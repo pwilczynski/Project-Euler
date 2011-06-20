@@ -1,15 +1,3 @@
-#! /usr/bin/env python
-# Copyright 2010 P. Wilczynski
-# Project Euler
-# Problem Number 11
-
-import sys
-import re
-import math
-
-"""
-In the 2020 grid below, four numbers along a diagonal line 
-have been marked in red.
 
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -31,46 +19,4 @@ have been marked in red.
 20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74 04 36 16
 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
-The product of these numbers is 26  63  78  14 = 1788696.
 
-What is the greatest product of four adjacent numbers in any 
-direction (up, down, left, right, or diagonally) in the 20x20 
-grid?
-"""
-def read_in(filename):
-    """ Read a file with an arbitrary number of columns.
-        The type of data in each column is arbitrary
-        It will be cast to the given dtype at runtime"""
-    f = open(filename,'r')
-    g = f.readlines()
-    for line in g:
-		line = line[:-1]
-    return g
-
-def mult_four(nums):
-	prod = 1
-	for i in nums:
-		prod = prod*i
-	return prod
-
-#def spawn_vert(grid):
-#	for row in grid:
-
-
-def main():
-	try:
-		filename = (sys.argv[1])
-		print 'reading in matrix'
-  		grid = read_in(filename)
-		print 'multiplying verticals'
-		#winner = spawn_vert(grid)
-		lst = [1,2,1,1,1,1,1]
-		print mult_four(lst)
-	except:
-		print 'error - remember to include a filename'
-		sys.exit(1)
-
-
-
-if __name__ == '__main__':
-	main()
