@@ -29,37 +29,87 @@ What is the value of the first triangle number to have over five hundred
 divisors?
 """
 
-def num_div(n):
+def isprime(startnumber):
+    startnumber*=1.0
+    for divisor in range(2,int(startnumber**0.5)+1):
+        if startnumber/divisor==int(startnumber/divisor):
+            return False
+    return True
+
+def gen_prime(n):
+    primes=[]
+    i = 1
+    while len(primes)<n:
+        i+=1
+        if isprime(i):
+            primes.append(i)
+        else:
+            continue
+    print primes
+    return primes
+
+def num_div(n,primes):
+    divisors=''
     count = 0
+        
     for i in range(1, n+1):
-#        print i, n%i
+        if i in primes and n%i != 0:
+            return 0
         if n%i == 0:
             count+=1
+            divisors+= str(i)+', '
+    print divisors[0:-2]
     return count
-    
 
-def triangle_nums(max):
-  print "*****Triangle Numbers*****"
-  count = 0
-  max_count = count
-  triangle = 1
-  n = 1
-  
-  while count <=max:
-      count = num_div(triangle)
-      print triangle, count
-      if count>max_count:
-          max_count = count
-      print max_count
-      n+=1
-      triangle = triangle + n 
-       
+def basic_div(n):
+    count = 0
+    for i in range(1,n+1):
+        if n%i==0:
+            count+=1
+            try:
+                divisors+= str(i)+', '
+            except:
+                divisors = ''
+                divisors += str(i) + ', '
+    print divisors[0:-2]
+    return count
+
+def produce_tri(n):
+    tri = (n*n+n)/2
+    return tri
+
+def triangle_nums(input_max):
+    print "*****Triangle Numbers*****"
+    winner = 0
+    i = 2
+
+    while winner<input_max:
+        tri = produce_tri(i)
+        print tri, '\t', winner
+        k = basic_div(i)
+        winner = max(k, winner)
+        if winner==k:
+            print tri,'\t',winner
+        i=i+1000
+    return                                                                               
+
+    primes=getprime[4]
+
+    while winner<input_max:
+        tri = produce_tri(i)
+        print tri, '\t', winner
+        k = num_div(i,primes)
+        winner = max(k, winner)
+        if winner==k:
+            print tri,'\t',winner
+        #print winner
+        i=2*i
 
 
 def main():
-  number = long(sys.argv[1])
-  triangle_nums(number)
+    number = long(sys.argv[1])
+    triangle_nums(number)
 
 
 if __name__ == '__main__':
-  main()
+    main()
